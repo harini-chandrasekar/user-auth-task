@@ -9,7 +9,7 @@ try {
         throw new Exception("MySQL Connection Error: " . $mysqli->connect_error);
     }
 
-    // Get POST data
+   
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
@@ -17,7 +17,7 @@ try {
         throw new Exception("Email and password are required");
     }
 
-    // Find user
+    // Finding user
     $stmt = $mysqli->prepare("SELECT id, password FROM users WHERE email = ?");
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $mysqli->error);
@@ -35,15 +35,15 @@ try {
 
     $user = $result->fetch_assoc();
 
-    // Verify password
+   
     if (!password_verify($password, $user['password'])) {
         throw new Exception("Invalid email or password");
     }
 
-    // Create session token
+ 
     $token = bin2hex(random_bytes(32));
 
-    // Redis optional (safe)
+   
     try {
         if (class_exists('Redis')) {
             $redis = new Redis();

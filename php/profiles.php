@@ -11,7 +11,7 @@ try {
         throw new Exception("Missing required parameters");
     }
     
-    // Verify session in Redis
+    
     try {
         $redis = new Redis();
         $redis->connect('127.0.0.1', 6379);
@@ -24,7 +24,7 @@ try {
         throw new Exception("Session error: " . $e->getMessage());
     }
     
-    // Connect to MongoDB
+    
     try {
         $mongoClient = new MongoDB\Client("mongodb://localhost:27017");
         $db = $mongoClient->user_profiles_db;
@@ -79,14 +79,14 @@ try {
         'message' => $e->getMessage()
     ]);
 }
-require 'vendor/autoload.php'; // Composer autoload
-// Connect to MongoDB server
+require 'vendor/autoload.php'; 
+
 $client = new MongoDB\Client("mongodb://localhost:27017");
 
-// Select database and collection
+
 $db = $client->user_profiles_db;
 $profiles = $db->profiles;
-// Example: get POST data
+
 $user_id  = $_POST['user_id'] ?? uniqid();
 $fullName = $_POST['fullName'] ?? '';
 $age      = $_POST['age'] ?? '';
@@ -94,7 +94,7 @@ $dob      = $_POST['dob'] ?? '';
 $contact  = $_POST['contact'] ?? '';
 $address  = $_POST['address'] ?? '';
 
-// Insert into MongoDB
+
 $result = $profiles->insertOne([
     'user_id'    => $user_id,
     'fullName'   => $fullName,

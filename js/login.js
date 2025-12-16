@@ -26,11 +26,9 @@ $(document).ready(function() {
                     showMessage(response.message, 'danger');
                 }
             },
-            error: function (xhr) {
-    console.error(xhr.responseText);
-    alert(xhr.responseText); // shows exact PHP error
-}
-
+            error: function() {
+                showMessage('An error occurred. Please try again.', 'danger');
+            }
         });
     });
     

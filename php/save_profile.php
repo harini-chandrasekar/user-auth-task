@@ -4,17 +4,16 @@ header('Content-Type: application/json');
 $dataDir = __DIR__ . '/../data';
 $dataFile = $dataDir . '/profiles.json';
 
-// create data folder if missing
+
 if (!is_dir($dataDir)) {
     mkdir($dataDir, 0777, true);
 }
 
-// create json file if missing
+
 if (!file_exists($dataFile)) {
     file_put_contents($dataFile, json_encode([]));
 }
 
-// get POST data
 $userId   = $_POST['userId']   ?? '';
 $fullName = $_POST['fullName'] ?? '';
 $age      = $_POST['age']      ?? '';
@@ -30,10 +29,10 @@ if ($userId === '') {
     exit;
 }
 
-// read existing data
+
 $profiles = json_decode(file_get_contents($dataFile), true);
 
-// update / insert user profile
+
 $profiles[$userId] = [
     'fullName' => $fullName,
     'age'      => $age,
@@ -43,7 +42,7 @@ $profiles[$userId] = [
     'updated'  => date('Y-m-d H:i:s')
 ];
 
-// save back to file
+
 file_put_contents($dataFile, json_encode($profiles, JSON_PRETTY_PRINT));
 
 echo json_encode([

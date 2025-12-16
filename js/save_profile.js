@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('#profileForm').on('submit', function (e) {
-        e.preventDefault(); // stop page reload
+        e.preventDefault(); 
 
         const profileData = {
             userId: localStorage.getItem('userId'),
@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'php/save_profile_file.php', // backend file
+            url: 'php/save_profile.php',
             data: profileData,
             dataType: 'json',
             success: function (response) {
