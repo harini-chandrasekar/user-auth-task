@@ -1,0 +1,15 @@
+{
+    "name": "harini/user-auth",
+    "description": "nothing",
+    "autoload": {
+        "psr-4": {
+            "Harini\\UserAuth\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "harini"
+        }
+    ],
+    "require": {}
+}
